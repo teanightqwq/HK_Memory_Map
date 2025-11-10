@@ -41,10 +41,10 @@
 
 ## 🚀 快速開始
 
-**⚡ 第一次使用？请先初始化测试数据：**
+**⚡ 使用方法：**
 
-1. 打开浏览器访问：`init-data.html`
-2. 点击"初始化测试数据"按钮
+1. 将GitHub Repo复制到本地
+2. 通过文件资源管理器打开浏览器访问：`index.html`
 3. 使用下方测试账号登录体验
 
 📖 详细说明：[快速开始指南 QUICKSTART.md](QUICKSTART.md) | [管理员指南 ADMIN_GUIDE.md](ADMIN_GUIDE.md)
