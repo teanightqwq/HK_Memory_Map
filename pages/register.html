@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>註冊 - 香港記憶地圖</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo"><a href="../index.html">🗺️ 香港記憶地圖</a></h1>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="auth-section">
+            <div class="auth-container">
+                <div class="auth-box">
+                    <h2>創建帳戶</h2>
+                    <p class="subtitle">加入我們，一起記錄香港的記憶</p>
+
+                    <!-- 註冊表單 -->
+                    <form id="registerForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="username">用戶名 *</label>
+                            <input type="text" id="username" placeholder="請輸入用戶名（3-20字符）" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">電郵地址 *</label>
+                            <input type="email" id="email" placeholder="請輸入電郵地址" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">密碼 *</label>
+                            <input type="password" id="password" placeholder="請輸入密碼（至少6個字符）" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">確認密碼 *</label>
+                            <input type="password" id="confirmPassword" placeholder="請再次輸入密碼" required>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="agreeTerms" required>
+                                <span>我已閱讀並同意<a href="#" class="link-primary">使用條款</a>和<a href="#" class="link-primary">隱私政策</a></span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-full">註冊</button>
+                    </form>
+
+                    <div class="auth-divider">
+                        <span>或</span>
+                    </div>
+
+                    <!-- 社交註冊 -->
+                    <div class="social-login">
+                        <button class="btn-social btn-google" onclick="handleSocialRegister('Google')">
+                            <span>🔍</span> 使用 Google 註冊
+                        </button>
+                        <button class="btn-social btn-facebook" onclick="handleSocialRegister('Facebook')">
+                            <span>📘</span> 使用 Facebook 註冊
+                        </button>
+                    </div>
+
+                    <div class="auth-footer">
+                        <p>已有帳戶？ <a href="login.html">立即登入</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 香港記憶地圖 Hong Kong Memory Map. 保留所有權利。</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/register.js"></script>
+    <script>
+        function handleSocialRegister(provider) {
+            alert(`${provider} 註冊功能開發中，敬請期待！`);
+        }
+    </script>
+</body>
+</html>

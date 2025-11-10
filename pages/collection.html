@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的收藏 - 香港記憶地圖</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo"><a href="../index.html">🗺️ 香港記憶地圖</a></h1>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">首頁</a></li>
+                    <li><a href="upload.html">上傳記憶</a></li>
+                    <li><a href="collection.html" class="active">我的收藏</a></li>
+                    <li><a href="leaderboard.html">排行榜</a></li>
+                    <li><a href="login.html" class="btn-login">登入</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="collection-section">
+            <div class="container">
+                <!-- 用戶統計 -->
+                <div class="user-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">🧩</div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="totalFragments">0</span>
+                            <span class="stat-label">記憶碎片</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎴</div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="totalCards">0</span>
+                            <span class="stat-label">記憶卡</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="userRank">-</span>
+                            <span class="stat-label">當前排名</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 標籤切換 -->
+                <div class="collection-tabs">
+                    <button class="tab-btn active" data-tab="fragments">記憶碎片</button>
+                    <button class="tab-btn" data-tab="cards">記憶卡</button>
+                    <button class="tab-btn" data-tab="submissions">我的提交</button>
+                </div>
+
+                <!-- 記憶碎片 -->
+                <div id="fragmentsTab" class="tab-content active">
+                    <h3>我的記憶碎片</h3>
+                    
+                    <!-- 分類過濾器 -->
+                    <div class="filter-bar">
+                        <button class="filter-btn active" data-filter="all">全部</button>
+                        <button class="filter-btn" data-filter="food">餐飲</button>
+                        <button class="filter-btn" data-filter="culture">文化</button>
+                        <button class="filter-btn" data-filter="architecture">建築</button>
+                    </div>
+
+                    <div class="fragments-grid" id="fragmentsGrid">
+                        <!-- 動態加載碎片 -->
+                    </div>
+                </div>
+
+                <!-- 記憶卡 -->
+                <div id="cardsTab" class="tab-content">
+                    <h3>我的記憶卡</h3>
+                    <p class="hint">💡 提示：集齊同一系列的3個碎片即可合成記憶卡</p>
+
+                    <!-- 合成進度 -->
+                    <div class="synthesis-progress">
+                        <div class="progress-card">
+                            <h4>🍜 餐飲系列</h4>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <p>0/3 碎片</p>
+                            <button class="btn-synthesize" disabled>合成卡片</button>
+                        </div>
+                        <div class="progress-card">
+                            <h4>🎭 文化系列</h4>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <p>0/3 碎片</p>
+                            <button class="btn-synthesize" disabled>合成卡片</button>
+                        </div>
+                        <div class="progress-card">
+                            <h4>🏛️ 建築系列</h4>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <p>0/3 碎片</p>
+                            <button class="btn-synthesize" disabled>合成卡片</button>
+                        </div>
+                    </div>
+
+                    <!-- 已獲得的卡片 -->
+                    <div class="cards-grid" id="cardsGrid">
+                        <div class="empty-state">
+                            <div class="empty-icon">🎴</div>
+                            <p>您還沒有合成任何記憶卡</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 我的提交 -->
+                <div id="submissionsTab" class="tab-content">
+                    <h3>我的提交記錄</h3>
+                    
+                    <div class="status-filter">
+                        <button class="status-btn active" data-status="all">全部</button>
+                        <button class="status-btn" data-status="pending">待審核</button>
+                        <button class="status-btn" data-status="approved">已通過</button>
+                        <button class="status-btn" data-status="rejected">未通過</button>
+                    </div>
+
+                    <div class="submissions-list" id="submissionsList">
+                        <div class="empty-state">
+                            <div class="empty-icon">📝</div>
+                            <p>您還沒有提交記錄</p>
+                            <a href="upload.html" class="btn-primary">上傳記憶</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 香港記憶地圖 Hong Kong Memory Map. 保留所有權利。</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/collection.js"></script>
+</body>
+</html>

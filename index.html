@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港記憶地圖 - Hong Kong Memory Map</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">🗺️ 香港記憶地圖</h1>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">首頁</a></li>
+                    <li><a href="pages/upload.html">上傳記憶</a></li>
+                    <li><a href="pages/collection.html">我的收藏</a></li>
+                    <li><a href="pages/leaderboard.html">排行榜</a></li>
+                    <li><a href="pages/login.html" class="btn-login">登入</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>記錄消失中的香港記憶</h2>
+                <p>通過您的鏡頭，保存舊時香港的文化印記</p>
+                <a href="pages/upload.html" class="btn-primary">開始記錄</a>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section class="intro">
+            <div class="container">
+                <h3>活動簡介</h3>
+                <p>
+                    本活動旨在通過將"文化認知"融入人們的日常生活中，在空閒時間以最低的參與成本，
+                    通過收集香港各地的"舊時產物"，以輕鬆、簡單的步驟，參與並深入了解對香港本地的"文化保育"認知。
+                </p>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <div class="container">
+                <h3>如何參與</h3>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-icon">📸</div>
+                        <h4>1. 拍攝記錄</h4>
+                        <p>在日常生活中遇到的舊記憶：非連鎖舊店鋪、老字號、非遺文化或準備拆卸的郊區等</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">🧩</div>
+                        <h4>2. 收集碎片</h4>
+                        <p>上傳照片經審核後，獲得該地的"記憶碎片"，了解背後的故事</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">🎴</div>
+                        <h4>3. 合成卡片</h4>
+                        <p>通過3個地點打卡，集齊碎片後可獲得"稀有記憶卡"</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">🏆</div>
+                        <h4>4. 獲得獎勵</h4>
+                        <p>收集不同系列的記憶卡，最終獲得《雙時空圖片集》大獎</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="categories">
+            <div class="container">
+                <h3>收集分類</h3>
+                <div class="category-grid">
+                    <div class="category-card" data-category="food">
+                        <div class="category-icon">🍜</div>
+                        <h4>餐飲系列</h4>
+                        <p>老字號茶餐廳、傳統小食店</p>
+                        <span class="category-count">0/10 碎片</span>
+                    </div>
+                    <div class="category-card" data-category="culture">
+                        <div class="category-icon">🎭</div>
+                        <h4>文化系列</h4>
+                        <p>非遺文化、傳統工藝</p>
+                        <span class="category-count">0/10 碎片</span>
+                    </div>
+                    <div class="category-card" data-category="architecture">
+                        <div class="category-icon">🏛️</div>
+                        <h4>建築系列</h4>
+                        <p>唐樓、舊式建築</p>
+                        <span class="category-count">0/10 碎片</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Submissions -->
+        <section class="recent-submissions">
+            <div class="container">
+                <h3>最新記憶</h3>
+                <div class="submissions-grid" id="recentSubmissions">
+                    <!-- 動態加載 -->
+                    <p class="no-data">暫無提交記錄</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 香港記憶地圖 Hong Kong Memory Map. 保留所有權利。</p>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

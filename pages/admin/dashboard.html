@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理員後台 - 香港記憶地圖</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+</head>
+<body class="admin-body">
+    <!-- 側邊欄 -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <h2>🔒 管理後台</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item active">
+                <span class="nav-icon">📊</span>
+                <span>數據總覽</span>
+            </a>
+            <a href="review.html" class="nav-item">
+                <span class="nav-icon">✅</span>
+                <span>審核提交</span>
+                <span class="badge-count">5</span>
+            </a>
+            <a href="fragments.html" class="nav-item">
+                <span class="nav-icon">🧩</span>
+                <span>碎片管理</span>
+            </a>
+            <a href="users.html" class="nav-item">
+                <span class="nav-icon">👥</span>
+                <span>用戶管理</span>
+            </a>
+            <a href="categories.html" class="nav-item">
+                <span class="nav-icon">🏷️</span>
+                <span>分類管理</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span>系統設置</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="#" class="logout-btn" onclick="handleAdminLogout(); return false;">登出</a>
+        </div>
+    </aside>
+
+    <!-- 主內容區 -->
+    <main class="admin-main">
+        <header class="admin-header">
+            <h1>數據總覽</h1>
+            <div class="navbar-right">
+                <!-- 动态加载管理员信息 -->
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <!-- 統計卡片 -->
+            <div class="stats-grid">
+                <!-- 动态加载统计数据 -->
+            </div>
+
+            <!-- 圖表區域 -->
+            <div class="charts-section">
+                <div class="chart-card" id="userGrowthChart">
+                    <!-- 动态加载用户增长图表 -->
+                </div>
+                <div class="chart-card" id="categoryChart">
+                    <!-- 动态加载分类分布图表 -->
+                </div>
+            </div>
+
+            <!-- 最近活動 -->
+            <div class="recent-activity">
+                <h3>最近活動</h3>
+                <div class="activity-list">
+                    <!-- 动态加载活动记录 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../scripts/admin-auth.js"></script>
+    <script src="../../scripts/admin-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上傳記憶 - 香港記憶地圖</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo"><a href="../index.html">🗺️ 香港記憶地圖</a></h1>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">首頁</a></li>
+                    <li><a href="upload.html" class="active">上傳記憶</a></li>
+                    <li><a href="collection.html">我的收藏</a></li>
+                    <li><a href="leaderboard.html">排行榜</a></li>
+                    <li><a href="login.html" class="btn-login">登入</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="upload-section">
+            <div class="container">
+                <h2>上傳您的記憶</h2>
+                <p class="subtitle">拍攝香港的舊時產物，記錄即將消失的文化記憶</p>
+
+                <form id="uploadForm" class="upload-form">
+                    <!-- 照片上傳 -->
+                    <div class="form-group">
+                        <label for="photoUpload">📷 上傳照片 *</label>
+                        <div class="photo-upload-area" id="photoUploadArea">
+                            <input type="file" id="photoUpload" accept="image/*" required>
+                            <div class="upload-placeholder">
+                                <span class="upload-icon">📁</span>
+                                <p>點擊或拖拽上傳照片</p>
+                                <small>支持 JPG, PNG 格式，最大 5MB</small>
+                            </div>
+                            <div class="photo-preview" id="photoPreview" style="display: none;">
+                                <img src="" alt="預覽圖片">
+                                <button type="button" class="remove-photo" id="removePhoto">✕</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 分類選擇 -->
+                    <div class="form-group">
+                        <label for="category">🏷️ 選擇主分類 *</label>
+                        <select id="category" required>
+                            <option value="">請選擇分類</option>
+                            <option value="food">餐飲系列</option>
+                            <option value="culture">文化系列</option>
+                            <option value="architecture">建築系列</option>
+                        </select>
+                    </div>
+
+                    <!-- 子分類選擇 -->
+                    <div class="form-group" id="subcategoryGroup" style="display: none;">
+                        <label for="subcategory">📋 選擇子分類 *</label>
+                        <select id="subcategory">
+                            <option value="">請選擇子分類</option>
+                        </select>
+                    </div>
+
+                    <!-- 標題 -->
+                    <div class="form-group">
+                        <label for="title">📝 記憶標題 *</label>
+                        <input type="text" id="title" placeholder="例如：蘭芳園茶餐廳、藍屋建築群" required>
+                        <small>給這段記憶起一個簡短的標題</small>
+                    </div>
+
+                    <!-- 地點資訊 -->
+                    <div class="form-group">
+                        <label for="location">📍 地點名稱 *</label>
+                        <input type="text" id="location" placeholder="例如：中環、油麻地、灣仔" required>
+                        <small>所在區域或街道</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">🗺️ 詳細地址</label>
+                        <input type="text" id="address" placeholder="例如：香港島中環XX街XX號（可選）">
+                    </div>
+
+                    <!-- 簡單描述 -->
+                    <div class="form-group">
+                        <label for="description">✍️ 簡單描述（可選）</label>
+                        <textarea id="description" rows="3" placeholder="簡單描述這個地點的特色，例如：經典茶餐廳、歷史建築..."></textarea>
+                        <small style="color: #999;">💡 提示：詳細的故事描述將由管理員在審核通過後添加</small>
+                    </div>
+
+                    <!-- 標籤 -->
+                    <div class="form-group">
+                        <label for="tags">🏷️ 標籤（可選）</label>
+                        <input type="text" id="tags" placeholder="用逗號分隔，例如：老字號,傳統,懷舊">
+                    </div>
+
+                    <!-- 提交規則提醒 -->
+                    <div class="submission-rules">
+                        <h4>📌 提交須知</h4>
+                        <ul>
+                            <li>照片必須為您本人拍攝</li>
+                            <li>同一地點每天限提交一次</li>
+                            <li>照片需經管理員審核後方可獲得碎片</li>
+                            <li>請確保照片清晰，能體現地點特色</li>
+                        </ul>
+                    </div>
+
+                    <!-- 提交按鈕 -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="history.back()">取消</button>
+                        <button type="submit" class="btn-primary">提交記憶</button>
+                    </div>
+                </form>
+
+                <!-- 提交狀態 -->
+                <div id="submitStatus" class="submit-status" style="display: none;"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 香港記憶地圖 Hong Kong Memory Map. 保留所有權利。</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/upload.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理員登入 - 香港記憶地圖</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo"><a href="../../index.html">🗺️ 香港記憶地圖</a></h1>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="auth-section">
+            <div class="auth-container">
+                <div class="auth-box admin-box">
+                    <div class="admin-badge">🔒 管理員專區</div>
+                    <h2>管理員登入</h2>
+                    <p class="subtitle">請使用管理員帳戶登入系統</p>
+
+                    <form id="adminLoginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="username">管理員帳號</label>
+                            <input type="text" id="username" placeholder="請輸入管理員帳號" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">密碼</label>
+                            <input type="password" id="password" placeholder="請輸入密碼" required>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="rememberMe">
+                            <label for="rememberMe">記住登入狀態</label>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-full">登入管理後台</button>
+                    </form>
+                    
+                    <div class="demo-account">
+                        <p>測試帳號：</p>
+                        <p>管理員：admin / admin123456</p>
+                        <p>審核員：reviewer / review123456</p>
+                    </div>
+
+                    <div class="auth-footer">
+                        <a href="../login.html">← 返回用戶登入</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 香港記憶地圖 Hong Kong Memory Map. 保留所有權利。</p>
+        </div>
+    </footer>
+
+    <script src="../../scripts/admin-auth.js"></script>
+    <script>
+        // 诊断脚本：检查 admin-auth.js 是否正确加载
+        console.log('====================================');
+        console.log('🔍 管理員登入頁面診斷信息');
+        console.log('====================================');
+        console.log('1. 當前頁面:', window.location.href);
+        console.log('2. handleAdminLogin 函數存在?', typeof handleAdminLogin !== 'undefined');
+        console.log('3. checkAdminLogin 函數存在?', typeof checkAdminLogin !== 'undefined');
+        console.log('4. initializeAdminAccounts 函數存在?', typeof initializeAdminAccounts !== 'undefined');
+        
+        // 检查表单是否存在
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('5. DOM 已加載');
+            
+            const form = document.getElementById('adminLoginForm');
+            console.log('6. 表單元素存在?', form !== null);
+            
+            if (form) {
+                console.log('7. 表單已綁定 submit 事件?', form.onsubmit !== null);
+                
+                // 🔧 手动再次绑定一次事件（以防万一）
+                console.log('🔧 手動綁定 submit 事件（備用）');
+                form.addEventListener('submit', function(e) {
+                    console.log('🎯 表單 submit 事件觸發！（手動綁定版本）');
+                    if (typeof handleAdminLogin === 'function') {
+                        handleAdminLogin(e);
+                    } else {
+                        console.error('❌ handleAdminLogin 函數不存在！');
+                    }
+                }, true); // 使用捕获阶段，优先级更高
+                
+                console.log('✅ 手動綁定完成');
+            }
+            
+            // 检查管理员数据库
+            const admins = JSON.parse(localStorage.getItem('admins')) || [];
+            console.log('9. 管理員數據庫:', admins.length, '個管理員');
+            if (admins.length > 0) {
+                console.log('   可用帳號:', admins.map(a => a.username).join(', '));
+            }
+            
+            // 检查当前会话
+            const localSession = localStorage.getItem('adminSession');
+            const sessionSession = sessionStorage.getItem('adminSession');
+            console.log('10. 當前 LocalStorage 會話:', localSession ? '存在' : '不存在');
+            console.log('11. 當前 SessionStorage 會話:', sessionSession ? '存在' : '不存在');
+            
+            console.log('====================================');
+            console.log('💡 如果看到這些信息，說明診斷腳本正常運行');
+            console.log('💡 請嘗試登錄，然後查看是否有新的日誌輸出');
+            console.log('====================================');
+        });
+    </script>
+</body>
+</html>
