@@ -162,7 +162,7 @@ function generateFragments() {
             location: location,
             address: `${location}附近`,
             description: `這是一段珍貴的${subConfig.label}記憶，見證了香港的獨特文化。`,
-            photo: '../images/placeholder.jpg',
+            photo: '../images/placeholder.svg',
             tags: [subConfig.label, location, '香港記憶'],
             obtainedDate: new Date().toISOString(),
             usedForSynthesis: false
@@ -208,7 +208,7 @@ function generateCategoryFragments() {
                 location: location,
                 address: `${location}附近`,
                 description: `這是一段珍貴的${sub.label}記憶，見證了香港的獨特文化。`,
-                photo: '../images/placeholder.jpg',
+                photo: '../images/placeholder.svg',
                 tags: [sub.label, location, '香港記憶'],
                 obtainedDate: new Date().toISOString(),
                 usedForSynthesis: false
@@ -260,7 +260,7 @@ function generateAllFragments() {
                     location: location,
                     address: `${location}附近`,
                     description: `這是一段珍貴的${sub.label}記憶，見證了香港的獨特文化。`,
-                    photo: '../images/placeholder.jpg',
+                    photo: '../images/placeholder.svg',
                     tags: [sub.label, location, '香港記憶'],
                     obtainedDate: new Date().toISOString(),
                     usedForSynthesis: false
