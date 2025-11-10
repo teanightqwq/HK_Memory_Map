@@ -150,10 +150,11 @@ function loadRecentActivities() {
     reviewLogs.slice(-10).reverse().forEach(log => {
         const action = log.action === 'approved' ? '批准' : '拒绝';
         const icon = log.action === 'approved' ? '✅' : '❌';
+        const title = log.submissionTitle ? ` "${log.submissionTitle}"` : '';
         activities.push({
             type: 'review',
             icon: icon,
-            text: `${log.reviewer} ${action}了一个提交`,
+            text: `${log.reviewer} ${action}了提交${title}`,
             time: log.reviewTime,
             status: log.action
         });

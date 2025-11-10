@@ -260,6 +260,29 @@ function updateAdminNavbar() {
             </div>
         `;
     }
+    
+    // 更新待审核数量徽章
+    updatePendingBadge();
+}
+
+// 更新待审核数量徽章
+function updatePendingBadge() {
+    // 获取待审核的提交数量
+    const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+    const pendingCount = submissions.filter(s => s.status === 'pending').length;
+    
+    // 更新所有的 badge-count 元素
+    const badges = document.querySelectorAll('.badge-count');
+    badges.forEach(badge => {
+        if (pendingCount > 0) {
+            badge.textContent = pendingCount;
+            badge.style.display = 'inline-block';
+        } else {
+            badge.style.display = 'none';
+        }
+    });
+    
+    console.log('📊 待審核數量:', pendingCount);
 }
 
 // 获取角色文本
@@ -313,5 +336,6 @@ window.checkAdminLogin = checkAdminLogin;
 window.verifyAdminPermission = verifyAdminPermission;
 window.handleAdminLogout = handleAdminLogout;
 window.updateAdminNavbar = updateAdminNavbar;
+window.updatePendingBadge = updatePendingBadge;
 window.showMessage = showMessage;
 window.formatDateTime = formatDateTime;

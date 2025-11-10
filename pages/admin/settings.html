@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系統設置 - 香港記憶地圖</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/admin.css">
+</head>
+<body class="admin-body">
+    <!-- 側邊欄 -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <h2>🔒 管理後台</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="nav-icon">📊</span>
+                <span>數據總覽</span>
+            </a>
+            <a href="review.html" class="nav-item">
+                <span class="nav-icon">✅</span>
+                <span>審核提交</span>
+            </a>
+            <a href="fragments.html" class="nav-item">
+                <span class="nav-icon">🧩</span>
+                <span>碎片管理</span>
+            </a>
+            <a href="cards.html" class="nav-item">
+                <span class="nav-icon">🎴</span>
+                <span>卡片管理</span>
+            </a>
+            <a href="users.html" class="nav-item">
+                <span class="nav-icon">👥</span>
+                <span>用戶管理</span>
+            </a>
+            <a href="categories.html" class="nav-item">
+                <span class="nav-icon">🏷️</span>
+                <span>分類管理</span>
+            </a>
+            <a href="settings.html" class="nav-item active">
+                <span class="nav-icon">⚙️</span>
+                <span>系統設置</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="#" class="logout-btn" onclick="handleAdminLogout(); return false;">登出</a>
+        </div>
+    </aside>
+
+    <!-- 主內容區 -->
+    <main class="admin-main">
+        <header class="admin-header">
+            <h1>⚙️ 系統設置</h1>
+            <div class="navbar-right">
+                <!-- 动态加载管理员信息 -->
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <!-- 數據管理 -->
+            <div class="settings-section">
+                <h3>🗄️ 數據管理</h3>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>導出所有數據</h4>
+                            <p>將所有用戶數據、提交記錄、碎片等導出為 JSON 文件</p>
+                        </div>
+                        <button class="btn-primary" onclick="exportAllData()">導出數據</button>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>導入數據</h4>
+                            <p>從 JSON 文件導入數據（會覆蓋現有數據）</p>
+                        </div>
+                        <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(event)">
+                        <button class="btn-secondary" onclick="document.getElementById('importFile').click()">選擇文件</button>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>清除所有數據</h4>
+                            <p class="text-danger">⚠️ 危險操作！將刪除所有用戶、碎片、提交記錄</p>
+                        </div>
+                        <button class="btn-danger" onclick="clearAllData()">清除數據</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 管理員管理 -->
+            <div class="settings-section">
+                <h3>👮 管理員管理</h3>
+                <div class="settings-card">
+                    <div class="admins-list" id="adminsList">
+                        <!-- 动态加载 -->
+                    </div>
+                    
+                    <div class="setting-item">
+                        <button class="btn-primary" onclick="showAddAdminDialog()">➕ 添加管理員</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 系統信息 -->
+            <div class="settings-section">
+                <h3>ℹ️ 系統信息</h3>
+                <div class="settings-card">
+                    <div class="system-info" id="systemInfo">
+                        <!-- 动态加载 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 審核日誌 -->
+            <div class="settings-section">
+                <h3>📝 系統操作日誌</h3>
+                <p class="text-muted" style="margin-bottom: 15px;">記錄所有審核和管理操作，包括碎片、卡片、用戶的增刪改操作</p>
+                <div class="settings-card">
+                    <div class="logs-container" id="reviewLogs">
+                        <!-- 动态加载 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../scripts/admin-auth.js"></script>
+    <script src="../../scripts/admin-settings.js"></script>
+</body>
+</html>

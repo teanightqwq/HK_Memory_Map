@@ -314,6 +314,11 @@ function confirmApproval(submissionId) {
     // 关闭对话框
     closeApprovalDialog();
     
+    // 更新待审核数量徽章
+    if (typeof updatePendingBadge === 'function') {
+        updatePendingBadge();
+    }
+    
     // 重新加载列表
     setTimeout(() => {
         loadPendingSubmissions();
@@ -347,6 +352,11 @@ function rejectSubmission(submissionId) {
     
     showMessage('已拒绝该提交', 'success');
     
+    // 更新待审核数量徽章
+    if (typeof updatePendingBadge === 'function') {
+        updatePendingBadge();
+    }
+    
     // 重新加载列表
     setTimeout(() => {
         loadPendingSubmissions();
@@ -369,10 +379,13 @@ function generateFragmentReward(submission) {
         subcategory: submission.subcategory,
         image: submission.photo,
         title: submission.title,
-        description: submission.description,
+        description: submission.story || submission.description, // 优先使用管理员添加的故事
         location: submission.location,
+        address: submission.address,
+        tags: submission.tags || [],
         obtainedTime: new Date().toISOString(),
-        fromSubmission: submission.id
+        fromSubmission: submission.id,
+        reviewedBy: submission.reviewer
     };
     
     fragments[userId].push(newFragment);
@@ -412,9 +425,15 @@ function updateUserStats(userId, type) {
 function recordReviewLog(submissionId, action, reason = '') {
     const logs = JSON.parse(localStorage.getItem('reviewLogs')) || [];
     
+    // 获取提交信息以记录标题
+    const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+    const submission = submissions.find(s => s.id === submissionId);
+    const submissionTitle = submission ? (submission.title || submission.location || '未命名') : '未知提交';
+    
     logs.push({
         id: `log-${Date.now()}`,
         submissionId: submissionId,
+        submissionTitle: submissionTitle,
         action: action,
         reason: reason,
         reviewer: checkAdminLogin().username,

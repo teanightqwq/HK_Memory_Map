@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>審核提交 - 管理員後台</title>
+    <title>用戶管理 - 香港記憶地圖</title>
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/admin.css">
 </head>
@@ -18,10 +18,9 @@
                 <span class="nav-icon">📊</span>
                 <span>數據總覽</span>
             </a>
-            <a href="review.html" class="nav-item active">
+            <a href="review.html" class="nav-item">
                 <span class="nav-icon">✅</span>
                 <span>審核提交</span>
-                <span class="badge-count" style="display: none;"></span>
             </a>
             <a href="fragments.html" class="nav-item">
                 <span class="nav-icon">🧩</span>
@@ -31,7 +30,7 @@
                 <span class="nav-icon">🎴</span>
                 <span>卡片管理</span>
             </a>
-            <a href="users.html" class="nav-item">
+            <a href="users.html" class="nav-item active">
                 <span class="nav-icon">👥</span>
                 <span>用戶管理</span>
             </a>
@@ -52,7 +51,7 @@
     <!-- 主內容區 -->
     <main class="admin-main">
         <header class="admin-header">
-            <h1>審核提交</h1>
+            <h1>👥 用戶管理</h1>
             <div class="navbar-right">
                 <!-- 动态加载管理员信息 -->
             </div>
@@ -60,31 +59,41 @@
 
         <div class="admin-content">
             <!-- 統計卡片 -->
-            <div class="stats-cards">
-                <!-- 动态加载统计数据 -->
+            <div class="stats-grid" id="userStats">
+                <!-- 动态加载 -->
             </div>
-            
-            <!-- 過濾器 -->
+
+            <!-- 搜索欄 -->
             <div class="filter-section">
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-category="all">全部</button>
-                    <button class="filter-btn" data-category="food">🍜 餐飲</button>
-                    <button class="filter-btn" data-category="culture">🎭 文化</button>
-                    <button class="filter-btn" data-category="architecture">🏛️ 建築</button>
-                </div>
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="搜索标题、描述、用户...">
+                    <input type="text" id="searchInput" placeholder="搜索用戶名、郵箱...">
                 </div>
             </div>
 
-            <!-- 待審核列表 -->
-            <div id="reviewList" class="review-list">
-                <!-- 动态加载审核列表 -->
+            <!-- 用戶列表 -->
+            <div class="users-table-container">
+                <table class="admin-table" id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>用戶</th>
+                            <th>郵箱</th>
+                            <th>註冊時間</th>
+                            <th>碎片數</th>
+                            <th>卡片數</th>
+                            <th>提交數</th>
+                            <th>狀態</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- 动态加载 -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>
 
     <script src="../../scripts/admin-auth.js"></script>
-    <script src="../../scripts/admin-review.js"></script>
+    <script src="../../scripts/admin-users.js"></script>
 </body>
 </html>

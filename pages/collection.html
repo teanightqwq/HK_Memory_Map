@@ -54,6 +54,7 @@
                 <div class="collection-tabs">
                     <button class="tab-btn active" data-tab="fragments">記憶碎片</button>
                     <button class="tab-btn" data-tab="cards">記憶卡</button>
+                    <button class="tab-btn" data-tab="achievements">收集成就</button>
                     <button class="tab-btn" data-tab="submissions">我的提交</button>
                 </div>
 
@@ -68,6 +69,11 @@
                         <button class="filter-btn" data-filter="culture">文化</button>
                         <button class="filter-btn" data-filter="architecture">建築</button>
                     </div>
+                    
+                    <!-- 子分類過濾器 (動態生成) -->
+                    <div id="subcategoryFilters" class="filter-bar" style="margin-top: 10px; display: none;">
+                        <!-- JavaScript 動態填充 -->
+                    </div>
 
                     <div class="fragments-grid" id="fragmentsGrid">
                         <!-- 動態加載碎片 -->
@@ -78,6 +84,19 @@
                 <div id="cardsTab" class="tab-content">
                     <h3>我的記憶卡</h3>
                     <p class="hint">💡 提示：集齊同一系列的3個碎片即可合成記憶卡</p>
+
+                    <!-- 分類過濾器 -->
+                    <div class="filter-bar">
+                        <button class="filter-btn active" data-filter="all">全部</button>
+                        <button class="filter-btn" data-filter="food">餐飲</button>
+                        <button class="filter-btn" data-filter="culture">文化</button>
+                        <button class="filter-btn" data-filter="architecture">建築</button>
+                    </div>
+                    
+                    <!-- 子分類過濾器 (動態生成) -->
+                    <div id="cardSubcategoryFilters" class="filter-bar" style="margin-top: 10px; display: none;">
+                        <!-- JavaScript 動態填充 -->
+                    </div>
 
                     <!-- 合成進度 -->
                     <div class="synthesis-progress">
@@ -116,6 +135,16 @@
                     </div>
                 </div>
 
+                <!-- 收集成就 -->
+                <div id="achievementsTab" class="tab-content">
+                    <h3>🏆 收集成就</h3>
+                    <p class="hint">💡 收集每個子分類的卡片，解鎖更多成就！</p>
+                    
+                    <div id="achievementsContainer">
+                        <!-- JavaScript 動態填充 -->
+                    </div>
+                </div>
+
                 <!-- 我的提交 -->
                 <div id="submissionsTab" class="tab-content">
                     <h3>我的提交記錄</h3>
@@ -146,5 +175,6 @@
     </footer>
 
     <script src="../scripts/collection.js"></script>
+    <script src="../scripts/achievements.js"></script>
 </body>
 </html>

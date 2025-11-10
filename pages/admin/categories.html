@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>審核提交 - 管理員後台</title>
+    <title>分類管理 - 香港記憶地圖</title>
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/admin.css">
 </head>
@@ -18,10 +18,9 @@
                 <span class="nav-icon">📊</span>
                 <span>數據總覽</span>
             </a>
-            <a href="review.html" class="nav-item active">
+            <a href="review.html" class="nav-item">
                 <span class="nav-icon">✅</span>
                 <span>審核提交</span>
-                <span class="badge-count" style="display: none;"></span>
             </a>
             <a href="fragments.html" class="nav-item">
                 <span class="nav-icon">🧩</span>
@@ -35,7 +34,7 @@
                 <span class="nav-icon">👥</span>
                 <span>用戶管理</span>
             </a>
-            <a href="categories.html" class="nav-item">
+            <a href="categories.html" class="nav-item active">
                 <span class="nav-icon">🏷️</span>
                 <span>分類管理</span>
             </a>
@@ -52,39 +51,40 @@
     <!-- 主內容區 -->
     <main class="admin-main">
         <header class="admin-header">
-            <h1>審核提交</h1>
+            <h1>🏷️ 分類管理</h1>
             <div class="navbar-right">
                 <!-- 动态加载管理员信息 -->
             </div>
         </header>
 
         <div class="admin-content">
-            <!-- 統計卡片 -->
-            <div class="stats-cards">
-                <!-- 动态加载统计数据 -->
-            </div>
-            
-            <!-- 過濾器 -->
-            <div class="filter-section">
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-category="all">全部</button>
-                    <button class="filter-btn" data-category="food">🍜 餐飲</button>
-                    <button class="filter-btn" data-category="culture">🎭 文化</button>
-                    <button class="filter-btn" data-category="architecture">🏛️ 建築</button>
-                </div>
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="搜索标题、描述、用户...">
-                </div>
+            <!-- 分類概覽 -->
+            <div class="categories-overview" id="categoriesOverview">
+                <!-- 动态加载 -->
             </div>
 
-            <!-- 待審核列表 -->
-            <div id="reviewList" class="review-list">
-                <!-- 动态加载审核列表 -->
+            <!-- 提示信息 -->
+            <div class="info-box">
+                <h3>💡 關於分類管理</h3>
+                <p>當前系統使用固定的三大主分類和各自的子分類。未來版本將支持動態添加和編輯分類。</p>
+                <ul>
+                    <li><strong>🍜 餐飲系列：</strong>茶餐廳、街頭小食、老字號餐館、麵包店、甜品店</li>
+                    <li><strong>🎭 文化系列：</strong>傳統節慶、粵劇、武館、廟宇、傳統手藝</li>
+                    <li><strong>🏛️ 建築系列：</strong>唐樓、騎樓、公屋、歷史建築、傳統店舖</li>
+                </ul>
+            </div>
+
+            <!-- 分類詳情 -->
+            <div class="categories-detail">
+                <h3>分類詳細信息</h3>
+                <div id="categoryCards">
+                    <!-- 动态加载 -->
+                </div>
             </div>
         </div>
     </main>
 
     <script src="../../scripts/admin-auth.js"></script>
-    <script src="../../scripts/admin-review.js"></script>
+    <script src="../../scripts/admin-categories.js"></script>
 </body>
 </html>
