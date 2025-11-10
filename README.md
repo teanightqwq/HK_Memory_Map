@@ -6,6 +6,9 @@
 
 ---
 
+## 🎯 参考图
+<img width="2483" height="4285" alt="image" src="https://github.com/user-attachments/assets/721d18ba-eaf6-4d9f-bc93-123728c06068" />
+
 ## 📖 項目簡介
 
 本項目旨在通過將"文化認知"融入人們的日常生活中，在空閒時間以最低的參與成本，通過收集香港各地的"舊時產物"，以輕鬆、簡單的步驟，參與並深入了解對香港本地的"文化保育"認知。
@@ -13,6 +16,7 @@
 ## ✨ 主要功能
 
 ### 1. 🗺️ 記憶地圖（公共地圖）
+<img width="2482" height="1364" alt="image" src="https://github.com/user-attachments/assets/ae9facbe-1fe5-42da-8f3d-6d7fba09c0e6" />
 - 展示所有已收錄的記憶碎片位置
 - 使用 Google My Maps 嵌入地圖
 - 按分類顯示（餐飲/文化/建築）
@@ -20,6 +24,7 @@
 - 支持主分類和子分類篩選
 
 ### 2. �📸 記憶上傳
+<img width="2480" height="1362" alt="image" src="https://github.com/user-attachments/assets/62c69c53-720b-43c7-86ce-2a697f1408af" />
 - 用戶拍攝日常生活中遇到的舊記憶
 - 支持拖拽上傳照片（最大5MB）
 - 選擇主分類和子分類
@@ -27,18 +32,21 @@
 - 防重複提交（同一地點每天限一次）
 
 ### 3. 🧩 記憶碎片收集
+<img width="2490" height="1362" alt="image" src="https://github.com/user-attachments/assets/fc861c31-b96a-4e96-98f5-7d8094ddbc1f" />
 參與者上傳照片經審核後，可獲得該地的"記憶碎片"：
 - 每個碎片附帶一段核心故事
 - 包含地點背景和相關知識
 - 按分類整理（餐飲/文化/建築）
 
 ### 4. 🎴 記憶卡合成
+<img width="2483" height="3766" alt="image" src="https://github.com/user-attachments/assets/7448ef0d-b131-4c68-9a3a-1794953109f4" />
 - 通過3個地點打卡，集齊同系列碎片
 - 可合成"稀有記憶卡"
 - 收集不同系列的記憶卡
 - 全收集顯示特殊徽章 ✓ 已收集
 
 ### 5. 🏆 排行榜系統
+<img width="2471" height="1354" alt="image" src="https://github.com/user-attachments/assets/7ce2b5be-4631-4f3d-9c87-16179bd7e2c6" />
 - 記錄參與者的收集碎片數
 - 每週發佈排行榜
 - 支持本週/本月/總榜查看
@@ -60,7 +68,7 @@
 
 **⚡ 使用方法：**
 
-1. 將 GitHub Repo 複製到本地
+1. 將 GitHub > clone 複製到本地
 2. 通過文件資源管理器打開瀏覽器訪問：`index.html`
 3. 使用下方測試帳號登錄體驗
 
