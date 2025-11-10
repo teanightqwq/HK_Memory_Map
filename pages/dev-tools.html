@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>開發者工具 - 香港記憶地圖</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        .dev-container {
+            max-width: 1200px;
+            margin: 80px auto 40px;
+            padding: 20px;
+        }
+        
+        .warning-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .warning-banner h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+        }
+        
+        .tool-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .tool-section h3 {
+            margin: 0 0 15px 0;
+            color: #333;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 10px;
+        }
+        
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .tool-card {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .tool-card h4 {
+            margin: 0 0 10px 0;
+            color: #555;
+            font-size: 1rem;
+        }
+        
+        .tool-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .btn-dev {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1976D2;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #388E3C;
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background: #FF9800;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background: #F57C00;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+        }
+        
+        .select-group {
+            margin-bottom: 15px;
+        }
+        
+        .select-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .select-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+        
+        .status-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            border-radius: 4px;
+        }
+        
+        .status-box h4 {
+            margin: 0 0 10px 0;
+            color: #1976D2;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #bbdefb;
+        }
+        
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background: #323232;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s;
+            z-index: 10000;
+        }
+        
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .toast.success {
+            background: #4CAF50;
+        }
+        
+        .toast.error {
+            background: #f44336;
+        }
+        
+        .toast.warning {
+            background: #FF9800;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo"><a href="../index.html">🗺️ 香港記憶地圖</a></h1>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">首頁</a></li>
+                    <li><a href="collection.html">我的收藏</a></li>
+                    <li><a href="achievements.html">成就</a></li>
+                    <li><a href="map.html">記憶地圖</a></li>
+                    <li><a href="leaderboard.html">排行榜</a></li>
+                    <li><a href="upload.html">上傳記憶</a></li>
+                    <li><a href="dev-tools.html" class="active">開發工具</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="dev-container">
+            <div class="warning-banner">
+                <h2>⚠️ 開發者工具</h2>
+                <p>此頁面僅用於開發測試，操作會直接修改 localStorage 數據，請謹慎使用！</p>
+            </div>
+
+            <!-- 當前狀態 -->
+            <div class="tool-section">
+                <h3>📊 當前數據狀態</h3>
+                <div id="statusBox" class="status-box">
+                    <h4>數據統計</h4>
+                    <div class="status-item">
+                        <span>當前用戶：</span>
+                        <strong id="currentUserName">未登入</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>記憶碎片：</span>
+                        <strong id="fragmentCount">0</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>記憶卡：</span>
+                        <strong id="cardCount">0</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>已完成子分類：</span>
+                        <strong id="completedSubcategories">0 / 0</strong>
+                    </div>
+                </div>
+                <button class="btn-dev btn-primary" onclick="refreshStatus()" style="margin-top: 15px;">🔄 刷新狀態</button>
+            </div>
+
+            <!-- 碎片生成 -->
+            <div class="tool-section">
+                <h3>🧩 碎片生成工具</h3>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h4>生成指定子分類碎片</h4>
+                        <div class="select-group">
+                            <label>主分類：</label>
+                            <select id="fragmentCategory" onchange="updateSubcategoryOptions('fragment')">
+                                <option value="food">餐飲系列</option>
+                                <option value="culture">文化系列</option>
+                                <option value="architecture">建築系列</option>
+                            </select>
+                        </div>
+                        <div class="select-group">
+                            <label>子分類：</label>
+                            <select id="fragmentSubcategory"></select>
+                        </div>
+                        <div class="select-group">
+                            <label>數量：</label>
+                            <select id="fragmentCount">
+                                <option value="1">1 個</option>
+                                <option value="3" selected>3 個</option>
+                                <option value="5">5 個</option>
+                                <option value="10">10 個</option>
+                            </select>
+                        </div>
+                        <button class="btn-dev btn-success" onclick="generateFragments()">✨ 生成碎片</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <h4>批量生成整個主分類</h4>
+                        <div class="select-group">
+                            <label>選擇主分類：</label>
+                            <select id="bulkCategory">
+                                <option value="food">餐飲系列</option>
+                                <option value="culture">文化系列</option>
+                                <option value="architecture">建築系列</option>
+                            </select>
+                        </div>
+                        <p>為該主分類的每個子分類生成3個碎片</p>
+                        <button class="btn-dev btn-success" onclick="generateCategoryFragments()">🎁 批量生成</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <h4>全收集碎片</h4>
+                        <p>為所有主分類的所有子分類生成3個碎片</p>
+                        <button class="btn-dev btn-warning" onclick="generateAllFragments()">🌟 全部生成</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片生成 -->
+            <div class="tool-section">
+                <h3>🎴 卡片生成工具</h3>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h4>直接生成卡片</h4>
+                        <div class="select-group">
+                            <label>主分類：</label>
+                            <select id="cardCategory" onchange="updateSubcategoryOptions('card')">
+                                <option value="food">餐飲系列</option>
+                                <option value="culture">文化系列</option>
+                                <option value="architecture">建築系列</option>
+                            </select>
+                        </div>
+                        <div class="select-group">
+                            <label>子分類：</label>
+                            <select id="cardSubcategory"></select>
+                        </div>
+                        <div class="select-group">
+                            <label>稀有度：</label>
+                            <select id="cardRarity">
+                                <option value="common">普通 ⚪</option>
+                                <option value="rare">稀有 🔵</option>
+                                <option value="epic">史詩 🟣</option>
+                                <option value="legendary">傳說 🟡</option>
+                            </select>
+                        </div>
+                        <button class="btn-dev btn-success" onclick="generateCard()">🎴 生成卡片</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <h4>批量生成整個主分類卡片</h4>
+                        <div class="select-group">
+                            <label>選擇主分類：</label>
+                            <select id="bulkCardCategory">
+                                <option value="food">餐飲系列</option>
+                                <option value="culture">文化系列</option>
+                                <option value="architecture">建築系列</option>
+                            </select>
+                        </div>
+                        <p>為該主分類的每個子分類生成一張隨機稀有度卡片</p>
+                        <button class="btn-dev btn-success" onclick="generateCategoryCards()">🎁 批量生成</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <h4>全收集卡片</h4>
+                        <p>為所有子分類生成卡片，稀有度隨機</p>
+                        <button class="btn-dev btn-warning" onclick="generateAllCards()">👑 全部生成</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 數據管理 -->
+            <div class="tool-section">
+                <h3>🗑️ 數據管理</h3>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h4>清除碎片數據</h4>
+                        <p>刪除當前用戶的所有記憶碎片</p>
+                        <button class="btn-dev btn-danger" onclick="clearFragments()">🗑️ 清除碎片</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <h4>清除卡片數據</h4>
+                        <p>刪除當前用戶的所有記憶卡</p>
+                        <button class="btn-dev btn-danger" onclick="clearCards()">🗑️ 清除卡片</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <h4>重置所有收集數據</h4>
+                        <p>清除碎片和卡片，保留用戶帳號</p>
+                        <button class="btn-dev btn-danger" onclick="resetAllCollection()">⚠️ 重置收集</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <h4>完全清除所有數據</h4>
+                        <p style="color: #f44336; font-weight: bold;">危險！清除所有 localStorage 數據</p>
+                        <button class="btn-dev btn-danger" onclick="clearAllData()">💀 清除所有</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="../scripts/dev-tools.js"></script>
+</body>
+</html>

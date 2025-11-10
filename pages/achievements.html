@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成就系統 - 香港記憶地圖</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo"><a href="../index.html">🗺️ 香港記憶地圖</a></h1>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">首頁</a></li>
+                    <li><a href="upload.html">上傳記憶</a></li>
+                    <li><a href="collection.html">我的收藏</a></li>
+                    <li><a href="achievements.html" class="active">成就系統</a></li>
+                    <li><a href="map.html">記憶地圖</a></li>
+                    <li><a href="leaderboard.html">排行榜</a></li>
+                    <li><a href="login.html" class="btn-login">登入</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="achievements-section">
+            <div class="container">
+                <div class="page-header">
+                    <h2>🏆 成就系統</h2>
+                    <p class="subtitle">追蹤您的收藏進度，解鎖各種成就徽章</p>
+                </div>
+
+                <!-- 成就統計概覽 -->
+                <div class="achievement-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="totalAchievements">0</span>
+                            <span class="stat-label">已解鎖成就</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="completionRate">0%</span>
+                            <span class="stat-label">完成度</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎴</div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="totalCards">0</span>
+                            <span class="stat-label">收藏卡片</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🧩</div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="totalFragments">0</span>
+                            <span class="stat-label">記憶碎片</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 成就分類標籤 -->
+                <div class="achievement-tabs">
+                    <button class="achievement-tab-btn active" data-category="all">全部成就</button>
+                    <button class="achievement-tab-btn" data-category="collection">收藏成就</button>
+                    <button class="achievement-tab-btn" data-category="submission">提交成就</button>
+                    <button class="achievement-tab-btn" data-category="special">特殊成就</button>
+                </div>
+
+                <!-- 成就內容區域 -->
+                <div id="achievementsContainer">
+                    <!-- JavaScript 動態填充 -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 香港記憶地圖 Hong Kong Memory Map. 保留所有權利。</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/achievements.js"></script>
+</body>
+</html>

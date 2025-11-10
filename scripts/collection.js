@@ -359,9 +359,6 @@ function switchTab(tabName) {
             // 重新绑定卡片过滤器事件
             setupCardFilterListeners();
             break;
-        case 'achievements':
-            displayAchievements();
-            break;
         case 'submissions':
             displaySubmissions();
             break;
@@ -702,9 +699,6 @@ function handleSubcategorySynthesize(category, subcategory) {
     updateSynthesisProgress();
     displayCards();
     displayFragments();
-    
-    // 检查成就
-    checkAchievements();
     
     // 显示成功消息并展示稀有度
     showSynthesisResult(rarityInfo, newCard);

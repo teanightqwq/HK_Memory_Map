@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>記憶地圖 - 香港記憶拼圖</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        /* 地圖頁面專用樣式 */
+        .map-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .map-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .map-header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .map-header p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* 上下佈局容器 - 80%寬度居中 */
+        .map-layout {
+            width: 80%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .map-layout > * {
+            margin-bottom: 20px;
+        }
+
+        /* 上方：碎片列表 */
+        .fragments-sidebar {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-height: 350px;
+            overflow-y: auto;
+            display: block;
+        }
+
+        .sidebar-header {
+            overflow: hidden;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .sidebar-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            float: left;
+        }
+
+        .sidebar-header-right {
+            float: right;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fragment-count {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .export-btn {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+        }
+
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.5);
+        }
+
+        .export-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 篩選器橫向排列容器 */
+        .filters-container {
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .filter-section {
+            margin-bottom: 15px;
+            width: 48%;
+            float: left;
+            margin-right: 4%;
+            box-sizing: border-box;
+        }
+
+        .filter-section:last-child {
+            margin-right: 0;
+        }
+
+        .filter-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .filter-section select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        .fragment-list {
+            display: block;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .fragment-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            width: calc(33.0% - 20px);  /* 3列佈局 */
+            margin: 10px;
+            box-sizing: border-box;
+            vertical-align: top;
+        }
+
+        /* 響應式：中等螢幕2列 */
+        @media (max-width: 900px) {
+            .fragment-item {
+                width: calc(50% - 20px);  /* 每行2個 */
+            }
+        }
+
+        /* 響應式：小螢幕1列 */
+        @media (max-width: 600px) {
+            .fragment-item {
+                width: calc(100% - 20px);  /* 每行1個 */
+            }
+        }
+
+        .fragment-item:hover {
+            background: #e8f4f8;
+            transform: translateY(-3px);  /* 改成向上浮動效果 */
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .fragment-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-left-color: #f1c40f;
+        }
+
+        .fragment-item h4 {
+            margin: 0 0 5px 0;
+            font-size: 0.95rem;
+        }
+
+        .fragment-item p {
+            margin: 0;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .fragment-category {
+            display: inline-block;
+            padding: 2px 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-top: 5px;
+        }
+
+        .no-fragments {
+            text-align: center;
+            padding: 30px 20px;
+            color: #999;
+        }
+
+        .no-fragments-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        /* 下方：地圖 */
+        .map-wrapper {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            min-height: 600px;
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            display: block;
+        }
+
+        .map-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        .map-info h4 {
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .map-legend {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 1024px) {
+            .map-layout {
+                width: 95%;
+            }
+
+            .fragments-sidebar {
+                max-height: 300px;
+            }
+
+            .map-iframe {
+                height: 500px;
+            }
+
+            .map-info {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .map-header h1 {
+                font-size: 2rem;
+            }
+
+            .map-layout {
+                width: 100%;
+            }
+
+            .map-iframe {
+                height: 400px;
+            }
+
+            .sidebar-header h3 {
+                font-size: 1rem;
+            }
+
+            .sidebar-header-right {
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 8px;
+            }
+
+            .export-btn {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-brand">🧩 香港記憶拼圖</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html">首頁</a></li>
+                <li><a href="collection.html">我的收藏</a></li>
+                <li><a href="achievements.html">成就</a></li>
+                <li><a href="map.html" class="active">記憶地圖</a></li>
+                <li><a href="leaderboard.html">排行榜</a></li>
+                <li><a href="upload.html">提交記憶</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn-login">登入</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 地圖容器 -->
+    <div class="map-container">
+        <div class="map-header">
+            <h1>🗺️ 香港記憶地圖</h1>
+            <p>探索所有已收錄的香港記憶碎片位置 · 公共地圖</p>
+        </div>
+
+        <div class="map-layout">
+            <!-- 上方：地圖 -->
+            <div class="map-wrapper">
+                <div class="map-info">
+                    <h4>🎯 地圖圖例</h4>
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #e74c3c;"></div>
+                            <span>餐飲系列</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #3498db;"></div>
+                            <span>文化系列</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #2ecc71;"></div>
+                            <span>建築系列</span>
+                        </div>
+                    </div>
+                </div>
+
+                <iframe 
+                    class="map-iframe"
+                    src="https://www.google.com/maps/d/embed?mid=1ntgBzVAnbWYyXTaxpRptN5ZMRJ7iJA4&ehbc=2E312F"
+                    allowfullscreen
+                    loading="lazy">
+                </iframe>
+            </div>
+
+            <!-- 下方：碎片列表 -->
+            <div class="fragments-sidebar">
+                <div class="sidebar-header">
+                    <h3>📍 記憶位置</h3>
+                    <div class="sidebar-header-right">
+                        <span class="fragment-count" id="fragmentCount">0</span>
+                        <button class="export-btn" onclick="exportToGoogleMapsCSV()" title="導出到 Google My Maps">
+                            📥 導出 CSV
+                        </button>
+                    </div>
+                </div>
+
+                <div class="filters-container">
+                    <div class="filter-section">
+                        <label for="categoryFilter">主分類篩選</label>
+                        <select id="categoryFilter">
+                            <option value="all">全部分類</option>
+                            <option value="food">🍜 餐飲系列</option>
+                            <option value="culture">🎭 文化系列</option>
+                            <option value="architecture">🏛️ 建築系列</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-section">
+                        <label for="subcategoryFilter">子分類篩選</label>
+                        <select id="subcategoryFilter">
+                            <option value="all">全部子分類</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="fragment-list" id="fragmentList">
+                    <div class="no-fragments">
+                        <div class="no-fragments-icon">📭</div>
+                        <p>暫無記憶碎片</p>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">
+                            請先<a href="login.html" style="color: #667eea;">登入</a>或前往
+                            <a href="dev-tools.html" style="color: #667eea;">開發工具</a>生成測試數據
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁腳 -->
+    <footer class="footer">
+        <p>&copy; 2024 香港記憶拼圖 | 保存城市記憶，傳承香港文化</p>
+    </footer>
+
+    <script src="../scripts/map.js"></script>
+</body>
+</html>
