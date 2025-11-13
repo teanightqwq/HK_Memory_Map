@@ -398,7 +398,7 @@ HK_Memory_Map/
 
 ## 📞 聯繫方式
 
-- � Email: your.email@example.com
+- 📷 IG: [Hong Kong Memory Map](https://www.instagram.com/hong_kong_memory_map?igsh=OGptbGhjeHozaWVr)
 - 🌐 GitHub: [@teanightqwq](https://github.com/teanightqwq)
 - 📝 項目主頁: [HK Memory Map](https://github.com/teanightqwq/HK_Memory_Map)
 
